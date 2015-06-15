@@ -1,10 +1,9 @@
 class Ship
 
-  attr_reader :coords, :length
+  attr_reader :length
 
   def initialize(length: 1)
     self.sunk = false
-    self.coords = []
     self.length = length
   end
 
@@ -16,14 +15,9 @@ class Ship
     sunk
   end
 
-  def assign_position(coordinates)
-    fail 'off the board' if coordinates.any? {|coord| coord > 9 }
-    coords << coordinates
-  end
-
   private
 
   attr_accessor :sunk
-  attr_writer :coords, :length
+  attr_writer :length
 
 end

@@ -10,7 +10,7 @@ describe Cell do
     subject.hit!
   end
 
-  it 'won\'t hit its contents multiple times' do
+  it "won't hit its contents multiple times" do
     expect(hittable).to receive(:hit).once
     subject.hit!
     subject.hit!
