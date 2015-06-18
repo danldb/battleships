@@ -7,12 +7,12 @@ describe Cell do
 
   it 'can hit a hittable object' do
     expect(hittable).to receive(:hit)
-    subject.hit!
+    subject.shoot
   end
 
   it "won't hit its contents multiple times" do
     expect(hittable).to receive(:hit).once
-    subject.hit!
-    subject.hit!
+    subject.shoot
+    subject.shoot
   end
 end

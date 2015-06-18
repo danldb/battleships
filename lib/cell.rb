@@ -4,20 +4,20 @@ class Cell
     self.contents = hittable
   end
 
-  def hit!
-    unless hit?
-      self.hit = true
+  def shoot
+    unless been_hit?
+      self.been_hit = true
       contents.hit
     end
   end
 
   private
 
-  def hit?
-    hit
+  def been_hit?
+    been_hit
   end
 
-  attr_accessor :hit
+  attr_accessor :been_hit
   attr_accessor :contents
 
 end
