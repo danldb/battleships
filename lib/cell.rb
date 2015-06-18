@@ -5,10 +5,7 @@ class Cell
   end
 
   def shoot
-    unless been_hit?
-      self.been_hit = true
-      contents.hit
-    end
+    contents.hit
   end
 
   private

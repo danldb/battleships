@@ -10,9 +10,4 @@ describe Cell do
     subject.shoot
   end
 
-  it "won't hit its contents multiple times" do
-    expect(hittable).to receive(:hit).once
-    subject.shoot
-    subject.shoot
-  end
 end
