@@ -15,6 +15,9 @@ describe Ship do
     expect(subject.length).to eq 1
   end
 
+  it 'can receive a shot'
+
+  it 'can send notification that it has been sunk'
 
 
 end

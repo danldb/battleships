@@ -1,6 +1,8 @@
+require_relative './shot.rb'
+
 class Player
 
-  def initialize(shootable:, shotclass:)
+  def initialize(shootable:, shotclass: Shot)
     @shootable = shootable
     @shotclass = shotclass
     @previous_coords = []
@@ -18,7 +20,7 @@ class Player
   attr_reader :shootable, :previous_coords, :shotclass
 
   def shot(coords)
-    shotclass.new(coords: coords)
+    shotclass.new(coords: coords, player: self)
   end
 
 end

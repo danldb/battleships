@@ -1,35 +1,39 @@
 class ShipLocator
 
   def initialize
-    self.coords = []
+    self.occupied_coords = []
   end
 
   def generate_coords(ship:,orientation:,seed:)
-    assign_position(seed)
-    self.orientation = orientation
-    self.length = (ship.length - 1)
-    build_coords
+    coords = add_coord([], seed)
+    length = (ship.length - 1)
+    length.times { coords = build_coords(coords, orientation)}
+    record_occupied(coords)
   end
 
   private
 
-  attr_accessor :length, :orientation, :coords
+  attr_accessor :occupied_coords
 
-  def assign_position(coordinates)
-    fail 'off the board' if coordinates.any? {|coord| coord > 9 }
-    coords << coordinates
+  def add_coord(ship_coords, new_coords)
+    fail 'that is outside the playable area' if out_of_play?(new_coords)
+    fail 'there is already a ship there' if occupied_coords.include? new_coords
+    ship_coords << new_coords
   end
 
-  def build_coords
-    length.times{add_coord}
+  def build_coords(coords, orientation)
+    y = coords[-1][-1]
+    x = coords[-1][0]
+    (orientation == :vertical) ? add_coord(coords,[x,y + 1]) : add_coord(coords, [x + 1,y])
+  end
+
+  def record_occupied coords
+    coords.each {|coord| occupied_coords << coord }
     coords
   end
 
-  def add_coord
-    y = (coords[-1][-1] + 1)
-    x = coords[-1][0]
-    (orientation == :vertical) ? assign_position([x,y]) : assign_position([y,x])
+  def out_of_play?(coords)
+    coords.any? {|coord| coord > 9 || coord < 0 }
   end
-
 
 end

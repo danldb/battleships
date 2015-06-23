@@ -18,4 +18,10 @@ describe Player do
     subject.shoot([0,0])
   end
 
+  it 'adds itself as an argument to a shot' do
+    allow(target).to receive(:shoot)
+    expect(shotclass).to receive(:new).with(coords: [0,0], player: subject)
+    subject.shoot([0,0])
+  end
+
 end
