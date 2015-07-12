@@ -2,22 +2,27 @@ require 'ship'
 
 describe Ship do
 
-  it 'is not sunk' do
-    expect(subject.sunk?).to be false
+  let(:shot){double :shot, register_hit: nil}
+
+  it 'will not be sunk if it still has lives' do
+    expect(shot).not_to receive(:register_kill)
+    subject.hit(shot)
   end
 
-  it 'can be sunk' do
-    subject.hit
-    expect(subject.sunk?).to be true
-  end
-
-  it 'has a length of 1' do
+  it 'has a length of 2' do
     expect(subject.length).to eq 2
   end
 
-  it 'can receive a shot'
+  it 'registers a hit' do
+    expect(shot).to receive(:register_hit)
+    subject.hit(shot)
+  end
 
-  it 'can send notification that it has been sunk'
+  it 'notifies when it is sunk' do
+    expect(shot).to receive(:register_kill).once
+    subject.hit(shot)
+    subject.hit(shot)
+  end
 
 
 end
