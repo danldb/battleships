@@ -12,7 +12,7 @@ describe Ship do
   end
 
   it 'has a length of 1' do
-    expect(subject.length).to eq 1
+    expect(subject.length).to eq 2
   end
 
   it 'can receive a shot'

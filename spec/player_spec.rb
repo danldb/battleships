@@ -7,7 +7,7 @@ describe Player do
   subject { Player.new(shootable: target, shotclass: shotclass) }
 
   it 'can shoot a shootable target' do
-    expect(target).to receive(:shoot).with([0,0],shot)
+    expect(target).to receive(:shoot).with(coords: [0,0],shot: shot)
     subject.shoot([0,0])
   end
 

@@ -8,7 +8,7 @@ class Board
     generate_rows(contents_class)
   end
 
-  def shoot(coords, shot)
+  def shoot(coords:, shot:)
     shots << shot
     rows[coords[0]][coords[1]].hit(shot)
   end

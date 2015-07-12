@@ -2,9 +2,10 @@ class Ship
 
   attr_reader :length
 
-  def initialize(length: 1)
+  def initialize(length: 2)
     self.sunk = false
     self.length = length
+    self.lives = length
   end
 
   def hit
@@ -17,7 +18,7 @@ class Ship
 
   private
 
-  attr_accessor :sunk
+  attr_accessor :sunk, :lives
   attr_writer :length
 
 end

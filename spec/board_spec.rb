@@ -15,16 +15,15 @@ describe Board do
   end
 
   context 'when receiving shoot' do
-    it { is_expected.to respond_to(:shoot).with(2).arguments }
 
     it 'hits a hittable_class' do
       place_hittable
       expect(hittable).to receive(:hit).with(shot)
-      subject.shoot([0,0], shot)
+      subject.shoot(coords: [0,0], shot: shot)
     end
 
     it 'registers a shot' do
-      subject.shoot([0,0], shot)
+      subject.shoot(coords: [0,0], shot: shot)
       expect(subject.shots).to include shot
     end
 

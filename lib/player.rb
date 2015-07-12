@@ -11,7 +11,7 @@ class Player
   def shoot(coords)
     unless previous_coords.include?(coords)
       previous_coords << coords
-      shootable.shoot(coords, shot(coords))
+      shootable.shoot(coords: coords, shot: shot(coords))
     end
   end
 
