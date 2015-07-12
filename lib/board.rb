@@ -27,9 +27,7 @@ class Board
   attr_accessor :width, :height
 
   def generate_rows(contents_class)
-    self.rows = []
-    row = Array.new(width, contents_class.new)
-    height.times { rows << row.dup }
+    self.rows = Array.new(height) { Array.new(width) {contents_class.new} }
   end
 
 end
