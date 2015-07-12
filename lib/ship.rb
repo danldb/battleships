@@ -10,7 +10,7 @@ class Ship
   def hit(shot)
     self.lives = lives - 1
     shot.register_hit
-    shot.register_kill if sunk?
+    shot.register_kill(self) if sunk?
   end
 
 

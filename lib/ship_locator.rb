@@ -24,7 +24,7 @@ class ShipLocator
   def build_coords(coords, orientation)
     y = coords[-1][-1]
     x = coords[-1][0]
-    (orientation == :vertical) ? add_coord(coords,[x,y + 1]) : add_coord(coords, [x + 1,y])
+    (orientation == :horizontal) ? add_coord(coords,[x,y + 1]) : add_coord(coords, [x + 1,y])
   end
 
   def record_occupied coords

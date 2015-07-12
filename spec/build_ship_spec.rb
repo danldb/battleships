@@ -1,6 +1,6 @@
-require 'ship_builder'
+require 'build_ship'
 
-describe ShipBuilder do
+describe BuildShip do
   let(:battleship){described_class.battleship}
 
   it 'builds a battleship' do

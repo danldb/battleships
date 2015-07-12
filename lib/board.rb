@@ -2,7 +2,7 @@ class Board
 
   attr_reader :rows
 
-  def initialize(width: 10, height: 10, contents_class:)
+  def initialize(width: 10, height: 10, contents_class: Water)
     self.width = width
     self.height = height
     generate_rows(contents_class)

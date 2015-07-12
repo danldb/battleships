@@ -19,7 +19,7 @@ describe Ship do
   end
 
   it 'notifies when it is sunk' do
-    expect(shot).to receive(:register_kill).once
+    expect(shot).to receive(:register_kill).with(subject).once
     subject.hit(shot)
     subject.hit(shot)
   end

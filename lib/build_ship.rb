@@ -1,6 +1,6 @@
-require 'ship'
+require_relative './ship.rb'
 
-class ShipBuilder
+class BuildShip
 
   SHIP_SIZES = {aircraft_carrier: 5,
                 battleship: 4,
