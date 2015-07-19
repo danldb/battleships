@@ -3,6 +3,7 @@ require 'player'
 describe Player do
   let(:target){double :target}
   let(:shot){double :shot}
+  let(:game){double :game}
   let(:shotclass){double :shotclass, new: shot}
   subject { Player.new(shootable: target, shotclass: shotclass) }
 
@@ -22,6 +23,12 @@ describe Player do
     allow(target).to receive(:shoot)
     expect(shotclass).to receive(:new).with(coords: [0,0], player: subject)
     subject.shoot([0,0])
+  end
+
+  it 'can lose a game' do
+    subject.game = (game)
+    expect(game).to receive(:lose_game).with(subject)
+    subject.report_destroyed
   end
 
 end

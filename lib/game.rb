@@ -1,31 +1,36 @@
 class Game
 
-  attr_reader :player_one, :player_two, :turn, :winner
+  attr_reader :turn, :winner
 
   def initialize(player_one:,player_two:)
-    self.player_one = player_one
-    self.player_two = player_two
+    self.players = [player_one, player_two]
     self.turn = player_one
   end
 
   def make_a_shot(player:, coord:)
-    if turn == player
+    if playable?(player)
       player.shoot(coord)
       next_turn(player)
     end
   end
 
-  def win_game(player)
-    self.winner = player
+  def lose_game(player)
+    self.winner = players.reject do |losing_player|
+      losing_player == player
+    end.first
   end
 
   private
 
   def next_turn(current_player)
-    players = [player_one, player_two]
     self.turn = players.reject { |player| player == current_player }.first
   end
 
-  attr_writer :player_one, :player_two, :turn, :winner
+  def playable?(player)
+    turn == player && !winner
+  end
+
+  attr_writer :turn, :winner
+  attr_accessor :players
 
 end

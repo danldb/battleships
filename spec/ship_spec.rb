@@ -1,14 +1,14 @@
 require 'ship'
 
 describe Ship do
-
-  subject { Ship.new(type: :patrol_boat) }
-
-  let(:shot){double :shot, register_hit: nil}
+  let(:fleet){double :fleet, register_sunk: nil}
+  let(:shot){double :shot, register_hit: nil, register_kill: nil}
+  subject { Ship.new(type: :patrol_boat, fleet: fleet) }
 
   it 'has a type' do
     expect(subject.type).to eq :patrol_boat
   end
+
   it 'has a length of 2' do
     expect(subject.length).to eq 2
   end
@@ -23,11 +23,18 @@ describe Ship do
     subject.hit(shot)
   end
 
-  it 'notifies when it is sunk' do
+  it 'notifies shot when it is sunk' do
     expect(shot).to receive(:register_kill).with(subject).once
+    sink_ship
+  end
+
+  it 'notifies its fleet when it is sunk' do
+    expect(fleet).to receive(:register_sunk).with(subject).once
+    sink_ship
+  end
+
+  def sink_ship
     subject.hit(shot)
     subject.hit(shot)
   end
-
-
 end
