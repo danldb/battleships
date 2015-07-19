@@ -2,10 +2,9 @@ require_relative './shot.rb'
 
 class Player
 
-  attr_writer :game
+  attr_writer :game, :board
 
-  def initialize(shootable:, shotclass: Shot)
-    self.shootable = shootable
+  def initialize(shotclass: Shot)
     self.shotclass = shotclass
     self.previous_coords = []
   end
@@ -13,7 +12,7 @@ class Player
   def shoot(coords)
     unless previous_coords.include?(coords)
       previous_coords << coords
-      shootable.shoot(coords: coords, shot: new_shot(coords))
+      board.shoot(coords: coords, shot: new_shot(coords))
     end
   end
 
@@ -23,8 +22,8 @@ class Player
 
   private
 
-  attr_reader :game
-  attr_accessor :shootable, :previous_coords, :shotclass
+  attr_reader :board, :game
+  attr_accessor :previous_coords, :shotclass
 
   def new_shot(coords)
     shotclass.new(coords: coords, player: self)
