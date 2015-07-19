@@ -1,9 +1,10 @@
+require_relative './board'
 class Game
 
   attr_reader :turn, :winner
 
   def initialize(player_one:,player_two:)
-    self.players = [player_one, player_two]
+    assign_players(player_one, player_two)
     self.turn = player_one
   end
 
@@ -30,7 +31,12 @@ class Game
     turn == player && !winner
   end
 
+  def assign_players(player_one, player_two)
+    self.players = [player_one, player_two]
+    players.each{|player| player.game = self}
+  end
+
   attr_writer :turn, :winner
-  attr_accessor :players
+  attr_accessor :players, :boards
 
 end

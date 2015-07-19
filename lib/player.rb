@@ -5,9 +5,9 @@ class Player
   attr_writer :game
 
   def initialize(shootable:, shotclass: Shot)
-    @shootable = shootable
-    @shotclass = shotclass
-    @previous_coords = []
+    self.shootable = shootable
+    self.shotclass = shotclass
+    self.previous_coords = []
   end
 
   def shoot(coords)
@@ -23,8 +23,8 @@ class Player
 
   private
 
-  attr_reader :shootable, :previous_coords, :shotclass
   attr_reader :game
+  attr_accessor :shootable, :previous_coords, :shotclass
 
   def new_shot(coords)
     shotclass.new(coords: coords, player: self)

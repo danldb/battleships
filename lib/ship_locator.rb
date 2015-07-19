@@ -1,19 +1,24 @@
 class ShipLocator
 
-  def initialize
+  def initialize(board:)
+    self.board = board
     self.occupied_coords = []
   end
 
-  def generate_coords(ship:,orientation:,seed:)
+  def place_ship(ship:,orientation:,seed:)
+    board.place(hittable: ship, coords: generate_coords(ship,orientation,seed) )
+  end
+
+  private
+
+  def generate_coords(ship,orientation,seed)
     coords = add_coord([], seed)
     length = (ship.length - 1)
     length.times { coords = build_coords(coords, orientation)}
     record_occupied(coords)
   end
 
-  private
-
-  attr_accessor :occupied_coords
+  attr_accessor :occupied_coords, :board
 
   def add_coord(ship_coords, new_coords)
     fail 'that is outside the playable area' if out_of_play?(new_coords)

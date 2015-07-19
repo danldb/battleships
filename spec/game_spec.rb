@@ -1,9 +1,12 @@
 require 'game'
 
 describe Game do
-  let(:player_one){double :player, shoot: nil}
-  let(:player_two){double :player, shoot: nil}
-  subject { Game.new(player_one: player_one, player_two: player_two) }
+  let(:player_one){double :player, shoot: nil, :'game=' => nil}
+  let(:player_two){double :player, shoot: nil, :'game=' => nil}
+
+  subject do
+    Game.new(player_one: player_one, player_two: player_two)
+  end
 
   it 'starts with player one\'s turn' do
     expect(subject.turn).to eq player_one
