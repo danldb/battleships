@@ -16,8 +16,12 @@ describe Fleet do
 
   it "has the correct ships" do
     SHIPS.each do |ship, quantity|
-      expect(subject.ships.select{|this_ship| this_ship == ship }.count).to eq quantity
+      expect(count_ships(type: ship)).to eq quantity
     end
+  end
+
+  def count_ships(type:)
+    subject.ships.select{|ship| type == ship }.count
   end
 
 end

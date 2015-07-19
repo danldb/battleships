@@ -33,6 +33,21 @@ describe Game do
     player_two_shot
   end
 
+  it 'does not have a winner' do
+    expect(subject.winner).to eq nil
+  end
+
+  it 'can be won' do
+    subject.win_game(player_one)
+    expect(subject.winner).to eq player_one
+  end
+
+  it 'will not make a shot when the game has been won' do
+    subject.win_game(player_one)
+    expect(player_two).not_to receive(:shoot)
+    player_one_shot
+  end
+
   def player_one_shot
     subject.make_a_shot(player: player_one, coord: :coord)
   end

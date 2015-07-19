@@ -1,6 +1,6 @@
 class Game
 
-  attr_reader :player_one, :player_two, :turn
+  attr_reader :player_one, :player_two, :turn, :winner
 
   def initialize(player_one:,player_two:)
     self.player_one = player_one
@@ -15,6 +15,10 @@ class Game
     end
   end
 
+  def win_game(player)
+    self.winner = player
+  end
+
   private
 
   def next_turn(current_player)
@@ -22,6 +26,6 @@ class Game
     self.turn = players.reject { |player| player == current_player }.first
   end
 
-  attr_writer :player_one, :player_two, :turn
+  attr_writer :player_one, :player_two, :turn, :winner
 
 end
