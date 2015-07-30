@@ -2,7 +2,14 @@ require_relative './ship.rb'
 
 class Fleet
 
-  def initialize(ships:, player:, shipclass: Ship)
+  SHIPS = {aircraft_carrier: 1,
+          battleship: 1,
+          submarine: 1,
+          destroyer: 1,
+          patrol_boat: 1}
+
+
+  def initialize(ships: SHIPS, player:, shipclass: Ship)
     self.player = player
     self.shipclass = shipclass
     build(ships)
